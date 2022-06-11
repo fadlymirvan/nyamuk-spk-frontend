@@ -64,7 +64,7 @@ export default class AddSymptomComponent extends Component {
                     submitted: true,
                 });
                 console.log(data);
-                this.props.history.push("/");
+                this.props.history.push("/symptoms");
             })
             .catch(e => {
                 console.log(e);
@@ -72,7 +72,7 @@ export default class AddSymptomComponent extends Component {
     }
 
     cancelSymptom() {
-        this.props.history.push("/");
+        this.props.history.push("/symptoms");
     }
 
     newSymptom() {

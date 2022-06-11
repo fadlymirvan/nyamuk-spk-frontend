@@ -1,4 +1,5 @@
 import http from "../http-common";
+import authHeader from "./auth-header";
 
 class AuthService {
     login(username, password) {
@@ -8,14 +9,16 @@ class AuthService {
         })
             .then(resp => {
                 if (resp.data.accessToken) {
-                    localStorage.setItem("user", JSON.stringify(resp.data));
+                    localStorage.setItem("user", JSON.stringify(resp.data.accessToken));
+                    localStorage.setItem("roles", JSON.stringify(resp.data.roles));
                 }
                 return resp.data
             });
     }
 
-    logout(key) {
-        localStorage.removeItem(key);
+    logout() {
+        localStorage.removeItem("user");
+        localStorage.removeItem("roles");
     }
 
     register(username, email, password) {
@@ -28,7 +31,13 @@ class AuthService {
     }
 
     getCurrentUser() {
-        return JSON.parse(localStorage.getItem("user"));
+        return http.get("/auth/user", {
+            headers: authHeader()
+        });
+    }
+
+    getCurrentUserRoles() {
+        return localStorage.getItem("roles");
     }
 }
 

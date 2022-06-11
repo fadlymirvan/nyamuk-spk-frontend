@@ -22,19 +22,23 @@ class App extends Component {
     }
 
     componentDidMount() {
-        const user = AuthService.getCurrentUser();
-        if (user) {
+        const roles = AuthService.getCurrentUserRoles();
+        const user = AuthService.getCurrentUser()
+            .then(resp => {
+                return resp.data;
+            });
+        if (user && roles) {
             this.setState({
                 currentUser: user,
-                showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+                showAdminBoard: roles.includes("ROLE_ADMIN"),
             });
         }
     }
     logOut() {
-        AuthService.logout("user");
+        AuthService.logout();
         this.setState({
             showAdminBoard: false
-        })
+        });
     }
 
   render() {
@@ -79,7 +83,7 @@ class App extends Component {
                       </li>
                       <li className="nav-item">
                           <a href="/login" className="nav-link" onClick={this.logOut}>
-                              LogOut
+                              Logout
                           </a>
                       </li>
                   </div>

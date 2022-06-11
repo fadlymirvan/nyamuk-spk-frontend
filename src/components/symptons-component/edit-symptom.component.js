@@ -110,7 +110,7 @@ export default class EditSymptomComponent extends Component {
                 this.setState({
                     message: "Symptom was updated successfully",
                 });
-                this.props.history.push("/");
+                this.props.history.push("/symptoms");
             })
             .catch(err => {
                 console.log(err);
@@ -118,7 +118,7 @@ export default class EditSymptomComponent extends Component {
     }
 
     cancelSymptom() {
-        this.props.history.push("/");
+        this.props.history.push("/symptoms");
     }
 
     render() {
