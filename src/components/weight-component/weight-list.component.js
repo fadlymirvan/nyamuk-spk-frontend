@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import WeightService from "../../services/weight.service";
-import {Button, Modal} from "react-bootstrap";
 
 export default class WeightListComponent extends Component {
     constructor(props) {

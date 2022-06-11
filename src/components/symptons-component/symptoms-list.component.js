@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SymptomsService from "../../services/symptoms.service";
 import {Button, Modal} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCancel, faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 
 export default class SymptomsListComponent extends Component {
     constructor(props) {
