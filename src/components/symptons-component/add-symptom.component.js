@@ -134,36 +134,39 @@ export default class AddSymptomComponent extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cf_value">Jenis Nyamuk</label><br/>
-                        <div>
+                        <label htmlFor="cf_value">Jenis Nyamuk</label>
+                        <div className="form-check">
                             <input
+                                className="form-check-input"
                                 type="checkbox"
                                 id={`custom-checkbox-N01`}
                                 name="Demam Berdarah"
                                 value={this.state.N01}
                                 onChange={this.onCheckBoxN01Change}
                             />
-                            <label htmlFor={`custom-checkbox-N01`} className="ml-2">Demam Berdarah</label>
+                            <label htmlFor={`custom-checkbox-N01`} className="ml-2 form-check-label">Demam Berdarah</label>
                         </div>
-                        <div>
+                        <div className="form-check">
                             <input
+                                className="form-check-input"
                                 type="checkbox"
                                 id={`custom-checkbox-N02`}
                                 name="Malaria"
                                 value={this.state.N02}
                                 onChange={this.onCheckBoxN02Change}
                             />
-                            <label htmlFor={`custom-checkbox-N02`} className="ml-2">Malaria</label>
+                            <label htmlFor={`custom-checkbox-N02`} className="ml-2 form-check-label">Malaria</label>
                         </div>
-                        <div>
+                        <div className="form-check">
                             <input
+                                className="form-check-input"
                                 type="checkbox"
                                 id={`custom-checkbox-N03`}
                                 name="Chikungunya"
                                 value={this.state.N03}
                                 onChange={this.onCheckBoxN03Change}
                             />
-                            <label htmlFor={`custom-checkbox-N03`} className="ml-2">Chikungunya</label>
+                            <label htmlFor={`custom-checkbox-N03`} className="ml-2 form-check-label">Chikungunya</label>
                         </div>
                             {/*{listNyamuk.map((nyamuk, index) => {*/}
                             {/*    return (*/}
