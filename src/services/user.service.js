@@ -3,7 +3,7 @@ import authHeader from "./auth-header";
 
 class UserService {
     getPublicContent() {
-        return http.get("/test/all");
+        return http.get("/home");
     }
 
     getUserBoard() {

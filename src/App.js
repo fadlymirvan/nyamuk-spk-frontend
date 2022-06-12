@@ -6,7 +6,7 @@ import EditSymptomComponent from "./components/symptons-component/edit-symptom.c
 import AddSymptomComponent from "./components/symptons-component/add-symptom.component";
 import WeightListComponent from "./components/weight-component/weight-list.component";
 import EditWeightComponent from "./components/weight-component/edit-weight.component";
-import Home from "./components/test-component/home.component";
+import Home from "./components/home.component";
 import LoginComponent from "./components/auth-component/login.component";
 import RegisterComponent from "./components/auth-component/register.component";
 import Profile from "./components/auth-component/profile.component";

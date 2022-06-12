@@ -168,30 +168,7 @@ export default class AddSymptomComponent extends Component {
                             />
                             <label htmlFor={`custom-checkbox-N03`} className="ml-2 form-check-label">Chikungunya</label>
                         </div>
-                            {/*{listNyamuk.map((nyamuk, index) => {*/}
-                            {/*    return (*/}
-                            {/*        <div key={index}>*/}
-                            {/*            <input*/}
-                            {/*                type="checkbox"*/}
-                            {/*                id={`custom-checkbox-${index}`}*/}
-                            {/*                name={nyamuk.name}*/}
-                            {/*                value={nyamuk.name}*/}
-                            {/*                onChange={() => {this.onCheckBoxChange(nyamuk.id)}}*/}
-                            {/*            />*/}
-                            {/*            <label htmlFor={`custom-checkbox-${index}`} className="ml-2">{nyamuk.name}</label>*/}
-                            {/*        </div>*/}
-                            {/*    );*/}
-                            {/*})}*/}
-                        {/*<input*/}
-                        {/*    type="number"*/}
-                        {/*    className="form-control"*/}
-                        {/*    id="cf_value"*/}
-                        {/*    value={this.state.cf_value}*/}
-                        {/*    onChange={this.onChangeCFValue}*/}
-                        {/*    name="cf_value"*/}
-                        {/*    min="0" max="1" step="0.1"*/}
-                        {/*    maxLength="1"*/}
-                        {/*/>*/}
+
                     </div>
                     <div className="container">
                         <div className="row">
