@@ -4,8 +4,12 @@ export default class Home extends Component {
     constructor(props) {
         super(props);
         this.retrieveAllData = this.retrieveAllData.bind(this);
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.calculateSymptoms = this.calculateSymptoms.bind(this);
         this.state = {
             content: null,
+            checkedBox: [],
+            checked: null
         }
     }
 
@@ -16,11 +20,9 @@ export default class Home extends Component {
     retrieveAllData() {
         UserService.getPublicContent().then(
             response => {
-                console.log(response);
                 this.setState({
                     content: response.data
                 });
-                console.log(this.state);
             },
             error => {
                 this.setState({
@@ -33,10 +35,51 @@ export default class Home extends Component {
         );
     }
 
+    handleOnChange(e) {
+        const { checkedBox } = this.state;
+        const index = parseInt(e.target.value);
+        let newCheckedBox = [...checkedBox];
+        newCheckedBox[index] = e.target.checked;
+
+        this.setState({
+            checkedBox: newCheckedBox
+        });
+    }
+
+    calculateSymptoms() {
+        console.log(this.state);
+        const { content, checkedBox } = this.state;
+        const probNyamuk = content.prob_jenis_nyamuk;
+        const probGejala = content.prob_gejala;
+        const jenisNyamukLength = content.jenis_nyamuk_length
+        const indices = checkedBox.reduce(
+            (out, bool, index) => bool ? out.concat(index) : out,
+            []
+        );
+        let arrProbFinal = [];
+        console.log(indices);
+        let resProbGejala = 0;
+        indices.forEach(index => {
+            let gejalaRatio =
+                probGejala[index] / jenisNyamukLength;
+            resProbGejala = resProbGejala === 0 ?
+                gejalaRatio :
+                resProbGejala * gejalaRatio;
+        });
+
+        console.log(resProbGejala);
+
+        probNyamuk.forEach(nyamuk => {
+            let probFinal = nyamuk * resProbGejala;
+            arrProbFinal.push(probFinal);
+        })
+
+        console.log(arrProbFinal);
+    }
+
     render() {
         if (this.state.content !== null) {
             const { gejala } = this.state.content;
-            console.log(gejala);
             return (
                 <div className="container">
                     <header className="jumbotron pb-5">
@@ -60,16 +103,23 @@ export default class Home extends Component {
                                     type="checkbox"
                                     id={`custom-checkbox-${index}`}
                                     name={gejala.name}
-                                    value="false"
+                                    value={index}
+                                    checked={this.state.checked}
+                                    onChange={this.handleOnChange}
                                 />
-                                <label htmlFor={`custom-checkbox-${index}`} className="ml-2 form-check-label">{gejala.name}</label>
+                                <label htmlFor={`custom-checkbox-${index}`} className="ml-2 form-check-label">
+                                    {gejala.code} - {gejala.name}
+                                </label>
                             </div>
                         );
                     })}
                     <div className="container">
                         <div className="row">
                             <div className="col text-center">
-                                <button className="btn btn-success m-3">
+                                <button
+                                    onClick={this.calculateSymptoms}
+                                    className="btn btn-success m-3"
+                                >
                                     Calculate
                                 </button>
                             </div>
