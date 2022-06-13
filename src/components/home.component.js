@@ -9,7 +9,8 @@ export default class Home extends Component {
         this.state = {
             content: null,
             checkedBox: [],
-            checked: null
+            jenisNyamuk: "",
+            isJenisNyamuk: false
         }
     }
 
@@ -49,37 +50,54 @@ export default class Home extends Component {
     calculateSymptoms() {
         console.log(this.state);
         const { content, checkedBox } = this.state;
-        const probNyamuk = content.prob_jenis_nyamuk;
-        const probGejala = content.prob_gejala;
-        const jenisNyamukLength = content.jenis_nyamuk_length
+        const gejala = content.gejala;
+        const jenisNyamukLength = content.jenis_nyamuk_length;
+        const dataLength = content.data_length;
+        const jenisNyamuk = [
+            {
+                name: "Demam Berdarah"
+            },
+            {
+                name: "Malaria"
+            },
+            {
+                name: "Chikungunya"
+            }
+        ]
         const indices = checkedBox.reduce(
             (out, bool, index) => bool ? out.concat(index) : out,
             []
         );
-        let arrProbFinal = [];
-        console.log(indices);
-        let resProbGejala = 0;
-        indices.forEach(index => {
-            let gejalaRatio =
-                probGejala[index] / jenisNyamukLength;
-            resProbGejala = resProbGejala === 0 ?
-                gejalaRatio :
-                resProbGejala * gejalaRatio;
-        });
 
-        console.log(resProbGejala);
+        const isTrue = (data) => {
+            return data ? 1 : 0;
+        }
 
-        probNyamuk.forEach(nyamuk => {
-            let probFinal = nyamuk * resProbGejala;
-            arrProbFinal.push(probFinal);
+        let arrResult = [];
+        for (let i=0; i<jenisNyamukLength; i++) {
+            let resProbGejala = 0;
+            let mulResProb = 0;
+            indices.forEach(index => {
+                let calc = (isTrue(gejala[index][`N0${i+1}`]) + (dataLength * (1/jenisNyamukLength))) / (1 + dataLength);
+                resProbGejala += calc;
+                mulResProb = mulResProb === 0 ? calc : mulResProb * calc;
+            });
+            let Pn = (resProbGejala / jenisNyamukLength) * mulResProb;
+            arrResult.push(Pn);
+        }
+
+        let maxValIndex = arrResult.reduce((index, x, i, arr) => x > arr[index] ? i : index, 0);
+        console.log(arrResult[maxValIndex], jenisNyamuk[maxValIndex].name);
+
+        this.setState({
+            jenisNyamuk: jenisNyamuk[maxValIndex].name,
+            isJenisNyamuk: true
         })
-
-        console.log(arrProbFinal);
     }
 
     render() {
         if (this.state.content !== null) {
-            const { gejala } = this.state.content;
+            const { gejala, isJenisNyamuk, jenisNyamuk } = this.state.content;
             return (
                 <div className="container">
                     <header className="jumbotron pb-5">
@@ -125,6 +143,11 @@ export default class Home extends Component {
                             </div>
                         </div>
                     </div>
+                    {isJenisNyamuk ?
+                        <div className="container">
+                            <h3>{jenisNyamuk}</h3>
+                        </div> :
+                        <div></div>}
                 </div>
             );
         } else {
