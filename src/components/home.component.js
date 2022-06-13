@@ -92,12 +92,13 @@ export default class Home extends Component {
         this.setState({
             jenisNyamuk: jenisNyamuk[maxValIndex].name,
             isJenisNyamuk: true
-        })
+        });
     }
 
     render() {
+        const { isJenisNyamuk, jenisNyamuk } = this.state;
         if (this.state.content !== null) {
-            const { gejala, isJenisNyamuk, jenisNyamuk } = this.state.content;
+            const { gejala } = this.state.content;
             return (
                 <div className="container">
                     <header className="jumbotron pb-5">
