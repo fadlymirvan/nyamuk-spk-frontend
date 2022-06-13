@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserService from "../services/user.service";
+import logo from '../logo-nyamuk.svg';
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -97,22 +98,33 @@ export default class Home extends Component {
 
     render() {
         const { isJenisNyamuk, jenisNyamuk } = this.state;
+        let url = "https://www.google.com/search?q=" + jenisNyamuk;
         if (this.state.content !== null) {
             const { gejala } = this.state.content;
             return (
                 <div className="container">
                     <header className="jumbotron pb-5">
-                        <h3>PUBLIC CONTENT</h3>
-                        <div className="container">
-                            <div className="row">
-                                <div className="col text-center">
-                                    <button className="btn btn-secondary m-3">
-                                        Nyamuk
-                                    </button>
-                                </div>
+                        <h3 className="text-center">Diagnosa Penyakit Akibat Gigitan Nyamuk</h3>
+                        <div className="media">
+                            <div className="media-body">
+                                <img src={logo} width="75%" alt="logo" />
+                            </div>
+                            <div className="media-body">
+                                <p>
+                                    Sistem diagnosa penyakit akibat gigitan nyamuk adalah sistem yang dibuat untuk
+                                    membantu pengguna dalam mengetahui penyebab dari gejala yang dirasakan sehingga
+                                    pengguna dapat melakukan tindakan yang tepat. Sistem ini menggunakan metode
+                                    <strong> Naïve Bayes</strong> dalam melakukan perhitungan prediksi terkait gejala
+                                    yang dirasakan pengguna dengan klasifikasi gejala dari gigitan nyamuk tertentu. Hasil
+                                    dari diagnosa ini dapat dijadikan acuan pengguna dalam menangani gejala yang
+                                    dirasakan oleh pengguna karena data gejala yang tertera sudah berdasarkan
+                                    dengan data dari pakar. Untuk tindakan penanganan lebih lanjut, dapat langsung
+                                    menghubungi dokter di rumah sakit.
+                                </p>
                             </div>
                         </div>
                     </header>
+                    <h5>Silahkan Pilih Daftar Gejala yang Anda Rasakan:</h5>
                     {gejala &&
                         gejala.map((gejala, index) => {
                         return (
@@ -146,7 +158,12 @@ export default class Home extends Component {
                     </div>
                     {isJenisNyamuk ?
                         <div className="container">
-                            <h3>{jenisNyamuk}</h3>
+                            <h5>
+                                Dari gejala yang dialami, kemungkinan penyebab dari gejala yang dirasa adalah karena
+                                gigitan nyamuk <a href={url} target="_blank"><u><strong>{jenisNyamuk}</strong></u></a>.
+                                Pengguna disarankan untuk melakukan konsultasi lebih lanjut dengan dokter.
+                            </h5>
+
                         </div> :
                         <div></div>}
                 </div>

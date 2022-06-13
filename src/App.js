@@ -59,16 +59,16 @@ class App extends Component {
                     </li>
                 )}
 
-                {showAdminBoard && (
-                    <li className="nav-item">
-                        <Link to={"/weights"} className="nav-link">
-                            Bobot
-                        </Link>
-                    </li>
-                )}
+                {/*{showAdminBoard && (*/}
+                {/*    <li className="nav-item">*/}
+                {/*        <Link to={"/weights"} className="nav-link">*/}
+                {/*            Bobot*/}
+                {/*        </Link>*/}
+                {/*    </li>*/}
+                {/*)}*/}
 
               <li className="nav-item">
-                <Link to={"/"} className="nav-link">
+                <Link to={"/about"} className="nav-link">
                   Tentang
                 </Link>
               </li>
@@ -76,11 +76,11 @@ class App extends Component {
 
               {currentUser ? (
                   <div className="navbar-nav ml-auto">
-                      <li className="nav-item">
-                          <Link to={"/profile"} className="nav-link">
-                              {currentUser.username}
-                          </Link>
-                      </li>
+                      {/*<li className="nav-item">*/}
+                      {/*    <Link to={"/profile"} className="nav-link">*/}
+                      {/*        {currentUser.username}*/}
+                      {/*    </Link>*/}
+                      {/*</li>*/}
                       <li className="nav-item">
                           <a href="/login" className="nav-link" onClick={this.logOut}>
                               Logout
@@ -94,11 +94,11 @@ class App extends Component {
                               Login
                           </Link>
                       </li>
-                      <li className="nav-item">
-                          <Link to={"/register"} className="nav-link">
-                              Sign Up
-                          </Link>
-                      </li>
+                      {/*<li className="nav-item">*/}
+                      {/*    <Link to={"/register"} className="nav-link">*/}
+                      {/*        Sign Up*/}
+                      {/*    </Link>*/}
+                      {/*</li>*/}
                   </div>
               )}
           </nav>
@@ -110,13 +110,16 @@ class App extends Component {
               <Route exact path="/symptoms/:id" component={EditSymptomComponent} />
 
               {/*Weights*/}
-              <Route exact path="/weights" component={WeightListComponent} />
-              <Route exact path="/weight/:id" component={EditWeightComponent} />
+              {/*<Route exact path="/weights" component={WeightListComponent} />*/}
+              {/*<Route exact path="/weight/:id" component={EditWeightComponent} />*/}
 
                 <Route exact path={["/", "/home"]} component={Home} />
                 <Route exact path="/login" component={LoginComponent} />
-                <Route exact path="/register" component={RegisterComponent} />
-                <Route exact path="/profile" component={Profile} />
+                {/*<Route exact path="/register" component={RegisterComponent} />*/}
+                {/*<Route exact path="/profile" component={Profile} />*/}
+
+
+                <Route exact path="/about" component={Home} />
             </Switch>
           </div>
         </div>
