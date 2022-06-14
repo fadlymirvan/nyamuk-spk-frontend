@@ -67,11 +67,11 @@ class App extends Component {
                 {/*    </li>*/}
                 {/*)}*/}
 
-              <li className="nav-item">
-                <Link to={"/about"} className="nav-link">
-                  Tentang
-                </Link>
-              </li>
+              {/*<li className="nav-item">*/}
+              {/*  <Link to={"/about"} className="nav-link">*/}
+              {/*    Tentang*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
             </div>
 
               {currentUser ? (
